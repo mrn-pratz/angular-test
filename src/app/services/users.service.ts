@@ -8,16 +8,18 @@ import { map, delay } from 'rxjs/operators';
         private url = './assets';
 
         constructor( private http: HttpClient){
-            console.log('UserService');
         }
 
         crearUsuario( user: Usuario ) {
+            console.log(`se guarda usuario con el nombre ${ user.name }` );
+            return ;
+            /*
             return this.http.post(`${ this.url }/users.json`, user)
                     .pipe(
                       map( (resp: any) => {
                        console.log(resp);
                       })
-                    );
+                    );*/
         
         }
         getUsuarios() {

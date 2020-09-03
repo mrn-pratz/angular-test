@@ -37,13 +37,7 @@ export class ListaComponent implements OnInit {
   guardar( form: NgForm ) {
 
     
-    let peticion: Observable<any>;
-
-    peticion = this._userService.crearUsuario( this.user );
-
-    peticion.subscribe( resp => {
-      console.log(resp);
-    });
+   this._userService.crearUsuario( this.user );
 
   }
 
