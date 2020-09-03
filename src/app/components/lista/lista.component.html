@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="prev-user">
+        <div class="column">
+            <h1>Usuarios</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="column actions">
+            <a href="#">Previsualizar</a>
+            <a id="addUser" href="#"><span>+</span>Agregar nuevo usuario</a>
+        </div>
+    </div>
+    <div class="results">
+        <div class="tools-bar">
+           <form action="">
+            <input type="text" name="Buscador" id="" placeholder="Busqueda">
+            <select name="numItems" id="">
+                <option value="8">8 por página</option>
+                <option value="16">16 por página</option>
+                <option value="24">24 por página</option>
+            </select>
+            <select name="orderItems" id="">
+                <option value="a">Ordenar de A-Z</option>
+                <option value="z">Ordenar de Z-A</option>
+            </select>
+            <select name="otherFilter" id="">
+                <option value="1">Todos</option>
+            </select>
+           </form>
+        </div>
+        <table>
+            <tr>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Apellido paterno</th>
+                <th>Apellido materno</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Status</th>
+            </tr>
+            <tr *ngFor="let user of users; let i = index">
+                <td><div class="round"><img src="{{user.picture}}" alt=""></div></td>
+                <td><p>{{user.name}}</p></td>
+                <td><p>{{user.fathersLastName}}</p></td>
+                <td><p>{{user.mothersLastName}}</p></td>
+                <td><p>{{user.email}}</p></td>
+                <td><p>{{ user.roleId == 1 ? 'admin' : 'user' }}</p></td>
+                <td><input type="checkbox" name="" id="" class="{{ user.active ? 'active' : '' }}" [checked]="user.active"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="paginador">
+        <a href="#">Anterior</a>
+        <ul>
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <a href="#">Siguiente</a>
+    </div>
+</div>
+<div class="modalAdd" id="modalAdd">
+    <div class="shadow-modal"></div>
+    <div class="container-modal">
+        <h1>Agregar nuevo usuario</h1>
+        <form (ngSubmit)="guardar( f )"
+        #f="ngForm">
+            <div class="info-basis">
+                <h2>Información básica</h2>
+                <input type="text" class="form-control m-right" placeholder="Nombre" [(ngModel)]="user.name" name="nameUser">
+                <input type="text" class="form-control" placeholder="Apellido paterno" [(ngModel)]="user.fathersLastName" name="fathersLast">
+                <input type="text" class="form-control m-right" placeholder="Apellido materno" [(ngModel)]="user.mothersLastName" name="mothersLast">
+                <input type="text" class="form-control" placeholder="Correo electrónico" [(ngModel)]="user.email" name="email">
+                <select [(ngModel)]="user.roleId" class="form-control m-right">
+                    <option value="">Roles</option>
+                    <option value="1">Dueño</option>
+                    <option value="2">Administrador</option>
+                    <option value="3">Staff</option>
+                </select>
+
+            </div>
+            <div class="actions">
+                <a id="closeModal" href="#">Cancelar</a>
+                <button type="submit">Guardar usuario</button>
+            </div>
+        </form>
+    </div>
+</div>
